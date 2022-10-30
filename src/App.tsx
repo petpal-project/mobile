@@ -1,11 +1,13 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, LogBox } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import AppStackNavigator from './components/navigation/AppStackNavigator';
 import { AuthContext } from './context';
 
 SplashScreen.preventAutoHideAsync();
+
+LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core']);
 
 export default function App() {
   const [appReady, setAppReady] = useState(false);
