@@ -20,14 +20,23 @@ export const AuthContext = createContext<AuthContextType>(
   {} as AuthContextType
 );
 
-export const AuthProvider: FC = ({ children }) => {
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>();
   const [initialUserLoad, setInitialUserLoad] = useState(false);
 
   useEffect(() => {
+    const getToken = async (user: User | null) => {
+      const token = await user?.getIdToken();
+      console.log('Token ', token);
+    };
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setInitialUserLoad(true);
+      getToken(user);
     });
 
     return unsubscribe;
