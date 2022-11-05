@@ -34,6 +34,7 @@ const config = ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     firebaseApiKey: process.env.FIREBASE_API_KEY,
+    apiBaseURL: process.env.API_BASE_URL,
   },
 });
 

@@ -2,6 +2,7 @@ import React, { FC, useContext } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { AuthContext } from '../context';
+import { getUser } from '../api/user';
 
 const ExpoDefault: FC = () => {
   const { logout } = useContext(AuthContext);
@@ -13,10 +14,11 @@ const ExpoDefault: FC = () => {
       <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
       <Button title={'Log out'} onPress={handleLogout} />
+      <Button title={'Get user'} onPress={getUser} />
     </View>
   );
 };
-
+``;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
