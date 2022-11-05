@@ -21,6 +21,7 @@ const config = ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
+    bundleIdentifier: 'com.petpal.mobile',
     supportsTablet: true,
   },
   android: {
