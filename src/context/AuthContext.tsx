@@ -1,10 +1,9 @@
 import { createContext, FC, useEffect, useMemo, useState } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { loginEmail, logoutUser, registerEmail } from '../api/auth';
 
 interface AuthContextType {
-  user?: User | null;
+  user?: FirebaseAuthTypes.User | null;
   initialUserLoad: boolean;
   login: (email: string, password: string) => Promise<void>;
   signUp: (
@@ -25,15 +24,15 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>();
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
   const [initialUserLoad, setInitialUserLoad] = useState(false);
 
   useEffect(() => {
-    const getToken = async (user: User | null) => {
+    const getToken = async (user: FirebaseAuthTypes.User | null) => {
       const token = await user?.getIdToken();
       console.log('Token ', token);
     };
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
       setUser(user);
       setInitialUserLoad(true);
       getToken(user);

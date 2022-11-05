@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { auth } from '../config/firebase';
+import auth from '@react-native-firebase/auth';
 import Constants from 'expo-constants';
 
 export const apiClient = axios.create({
@@ -8,7 +8,7 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(async (config) => {
-  const token = await auth.currentUser?.getIdToken();
+  const token = await auth().currentUser?.getIdToken();
   if (token) {
     config.headers = {
       ...config.headers,

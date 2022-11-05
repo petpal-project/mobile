@@ -27,8 +27,16 @@ PODS:
     - React-Core (= 0.69.6)
     - React-jsi (= 0.69.6)
     - ReactCommon/turbomodule/core (= 0.69.6)
+  - Firebase/Auth (10.1.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 10.1.0)
   - Firebase/CoreOnly (10.1.0):
     - FirebaseCore (= 10.1.0)
+  - FirebaseAuth (10.1.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (~> 2.1)
   - FirebaseCore (10.1.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -37,11 +45,22 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - fmt (6.2.1)
   - glog (0.3.5)
+  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.8.0):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.8.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.8.0)"
+  - GoogleUtilities/Reachability (7.8.0):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (2.1.0)
   - PromisesObjC (2.1.1)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -327,6 +346,10 @@ PODS:
   - RNFBApp (16.4.2):
     - Firebase/CoreOnly (= 10.1.0)
     - React-Core
+  - RNFBAuth (16.4.2):
+    - Firebase/Auth (= 10.1.0)
+    - React-Core
+    - RNFBApp
   - RNScreens (3.15.0):
     - React-Core
     - React-RCTImage
@@ -375,16 +398,19 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - Firebase
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreInternal
     - fmt
     - GoogleUtilities
+    - GTMSessionFetcher
     - PromisesObjC
 
 EXTERNAL SOURCES:
@@ -470,6 +496,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBAuth:
+    :path: "../node_modules/@react-native-firebase/auth"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -489,11 +517,13 @@ SPEC CHECKSUMS:
   FBLazyVector: 739d2f9719faecb463c7aa191591af31c8c94182
   FBReactNativeSpec: 957de82f66e31f2f14bbec34e37242282fdd26de
   Firebase: 444b35a9c568a516666213c2f6cccd10cb12559f
+  FirebaseAuth: 19a85b8a42e7c1104a2ffa6987c748daa79a5e64
   FirebaseCore: 55e7ae35991ccca4db03ff8d8df6ed5f17a3e4c7
   FirebaseCoreInternal: 96d75228e10fd369564da51bd898414eb0f54df5
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
+  GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   RCT-Folly: b9d9fe1fc70114b751c076104e52f3b1b5e5a95a
   RCTRequired: c8c080849a3670601d5c7056023a2176067a69d8
@@ -523,6 +553,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 0af71c94f968fa10015bf0119951bccd2e4d8865
   ReactCommon: fe7580b9d10f00249facf25659e0ec051320cc8a
   RNFBApp: 69190bec3b0621b4b635f4a11b733a9401343dc8
+  RNFBAuth: f1d50bfad2692338c1aa6947a39cf7bcaa474658
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   Yoga: 75bf4b0131cfb46a659cd0c13309b79a6fcff66d
 

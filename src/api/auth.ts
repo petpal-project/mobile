@@ -1,14 +1,8 @@
-import { auth } from '../config/firebase';
-import {
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
+import auth from '@react-native-firebase/auth';
 import { createUser } from './user';
 
 export const loginEmail = async (email: string, password: string) => {
-  await signInWithEmailAndPassword(auth, email, password);
+  await auth().signInWithEmailAndPassword(email, password);
 };
 
 export const registerEmail = async (
@@ -17,12 +11,12 @@ export const registerEmail = async (
   firstName: string,
   lastName: string
 ) => {
-  const creds = await createUserWithEmailAndPassword(auth, email, password);
+  const creds = await auth().createUserWithEmailAndPassword(email, password);
   return await createUser(creds.user.uid, firstName, lastName);
 };
 
 export const sendPasswordReset = async (email: string) => {
-  await sendPasswordResetEmail(auth, email);
+  await auth().sendPasswordResetEmail(email);
 };
 
-export const logoutUser = async () => await signOut(auth);
+export const logoutUser = async () => await auth().signOut();
