@@ -21,9 +21,11 @@ const config = ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
+    bundleIdentifier: 'com.petpal.mobile',
     supportsTablet: true,
   },
   android: {
+    package: 'com.petpal.mobile',
     adaptiveIcon: {
       foregroundImage: './src/assets/adaptive-icon.png',
       backgroundColor: '#FFFFFF',
