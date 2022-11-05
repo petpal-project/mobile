@@ -1,16 +1,19 @@
-import { createTRPCClient } from '@trpc/client';
-import type { AppRouter } from '../../../server/src/utils/trpc';
+import axios from 'axios';
 import { auth } from '../config/firebase';
+import Constants from 'expo-constants';
 
-export const client = createTRPCClient<AppRouter>({
-  url: 'http://localhost:8080/trpc',
-  async headers() {
-    const token = await auth.currentUser?.getIdToken();
-    if (token) {
-      return {
-        Authorization: 'Bearer ' + token,
-      };
-    }
-    return {};
-  },
+export const apiClient = axios.create({
+  baseURL: Constants.expoConfig?.extra?.apiBaseURL,
+  timeout: 3000,
+});
+
+apiClient.interceptors.request.use(async (config) => {
+  const token = await auth.currentUser?.getIdToken();
+  if (token) {
+    config.headers = {
+      ...config.headers,
+      Authorization: token,
+    };
+  }
+  return config;
 });
