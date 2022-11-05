@@ -3,8 +3,8 @@
 React Native Project managed by Expo.
 
 ## Running locally
+
 ```
-$ export FIREBASE_API_KEY=<pet-pal api key>
 $ yarn install
 $ yarn start (start app with QR code)
 $ yarn ios (start app on iOS sim, Xcode required)
